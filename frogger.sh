@@ -105,7 +105,7 @@ fi
 #Check for arpscan
 which arp-scan >/dev/null
 if [ $? -eq 1 ]
-	then
+	thent
 		echo -e "\e[01;31m[!]\e[00m Unable to find the required arp-scan program, install at least version 1.8 and try again. Download from www.nta-monitor.com."
 		echo ""
 		exit 1
@@ -187,7 +187,7 @@ fi
 echo ""
 echo -e "\e[01;32m[-]\e[00m Now Sniffing CDP Packets on $INT - Please wait for "$CDPSEC" seconds."
 echo ""
-OUTPUT="`tshark -a duration:$CDPSEC -i $INT -R \"cdp\" -V 2>&1 | sort --unique`"
+OUTPUT="`tshark -a duration:$CDPSEC -i $INT -Y \"cdp\" -V 2>&1 | sort --unique`"
 printf -- "${OUTPUT}\n" | while read line
 do
 	case "${line}" in
